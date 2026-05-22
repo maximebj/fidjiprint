@@ -59,7 +59,7 @@ function fidjiprint_register_short_title()
 
         $titre_court = get_field('titre_court') ?? get_the_title();
         if (empty($titre_court)) {
-          $titre_court = "Titre du bloc";
+          $titre_court = "Titre du produit";
         }
 
         $link = get_permalink();
