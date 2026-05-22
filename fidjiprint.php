@@ -95,3 +95,31 @@ function fidjiprint_register_short_title()
   );
 }
 add_action('init', 'fidjiprint_register_short_title');
+
+# Déclaration du bloc pour afficher une calculatrice via un shortcode ACF
+function fidjiprint_register_calc_shortcode_block()
+{
+  # Nom unique du bloc
+  $block_name = 'fidjiprint/calc-shortcode';
+
+  # Déclaration du bloc
+  register_block_type(
+    $block_name,
+    [
+      'title'           => 'Calculatrice Shortcode',
+      'category'        => 'text',
+      'icon'            => 'calculator',
+      'render_callback' => function () {
+        $shortcode = get_field('shortcode_calculatrice');
+        if (empty($shortcode)) {
+          return '<p>Emplacement de la calculatrice</p>';
+        }
+        return do_shortcode($shortcode);
+      },
+      'supports'        => [
+        'autoRegister' => true,
+      ],
+    ]
+  );
+}
+add_action('init', 'fidjiprint_register_calc_shortcode_block');
